@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
 
 const ENTER_KEY_CODE = 13;
 const DEFAULT_LABEL_PLACEHOLDER = "Click To Edit";
@@ -52,13 +54,13 @@ const EditableLabel = props => {
   if (isEditing) {
     return (
       <div>
-        <input
-          type="text"
-          className={props.inputClassName}
-          ref={thisRef => {
-            setInputRef(thisRef);
+        <Input
+          inputProps={{
+            ref: thisRef => {
+              setInputRef(thisRef);
+            },
+            value
           }}
-          value={value}
           onChange={handleChange}
           onBlur={handleFocus}
           onKeyDown={handleKeyDown}
@@ -74,9 +76,7 @@ const EditableLabel = props => {
 
   return (
     <div>
-      <label className={props.labelClassName} onClick={handleFocus}>
-        {labelText}
-      </label>
+      <InputLabel onClick={handleFocus}>{labelText}</InputLabel>
     </div>
   );
 };
@@ -101,6 +101,7 @@ EditableLabel.propTypes = {
   inputClassName: PropTypes.string,
   inputBorderWidth: PropTypes.string,
 
+  onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onFocusOut: PropTypes.func
 };
