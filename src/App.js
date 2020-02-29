@@ -8,7 +8,7 @@ export default function App() {
     <div className="App">
       <Edit
         value={text}
-        onTextChange={v => setText(v)}
+        onChange={e => setText(e.target.value)}
         onFocus={t => console.log("focus", t)}
         onFocusOut={t => console.log("focus out", t)}
       />

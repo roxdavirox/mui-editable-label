@@ -34,9 +34,9 @@ const EditableLabel = props => {
     }
   };
 
-  const handleChange = () => {
+  const handleChange = e => {
     setValue(inputRef.value);
-    props.onTextChange(inputRef.value);
+    props.onChange(e);
   };
 
   const handleKeyDown = e => {
