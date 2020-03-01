@@ -3,7 +3,7 @@ import Edit from "./EditableLabel";
 
 export default function App() {
   const [text, setText] = useState("Hello edit");
-  console.log("text", text);
+
   return (
     <div className="App">
       <Edit
