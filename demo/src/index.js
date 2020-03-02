@@ -1,15 +1,22 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
+import React, { useState } from 'react'
+import { render } from 'react-dom'
 
-import Example from '../../src'
+import MuiEditableLabel from '../../src'
 
-class Demo extends Component {
-  render() {
-    return <div>
+function Demo() {
+  const [text, setText] = useState("Click here to edit.");
+
+  return (
+    <div>
       <h1>mui-editable-label Demo</h1>
-      <Example/>
+      <MuiEditableLabel
+        value={text}
+        onChange={e => setText(e.target.value)}
+        onFocus={t => console.log("focus", t)}
+        onFocusOut={t => console.log("focus out", t)}
+      />
     </div>
-  }
+  );
 }
 
 render(<Demo/>, document.querySelector('#demo'))
