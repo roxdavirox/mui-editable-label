@@ -38,7 +38,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/roxdavirox/mui-editable-label.git"
+    "url": "https://github.com/roxdavirox/mui-editable-label.git"
   },
   "keywords": [
     "editable",
