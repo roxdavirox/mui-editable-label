@@ -19,9 +19,14 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "prop-types": "^15.7.2"
+  },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x",
+    "@material-ui/core": "4.x",
+    "prop-types": "15.x"
   },
   "devDependencies": {
     "nwb": "0.23.x",
