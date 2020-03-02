@@ -19,4 +19,4 @@ function Demo() {
   );
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo/>, document.getElementById('container'))
