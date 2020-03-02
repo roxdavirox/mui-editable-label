@@ -6,6 +6,8 @@
 
 mui-editable-label is a easy and small component Label that you can edit just by clicking.
 
+see a example [here](https://codesandbox.io/s/mui-editable-label-example-32pxf)
+
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
 
