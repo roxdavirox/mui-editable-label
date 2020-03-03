@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -6,39 +6,28 @@ import InputLabel from "@material-ui/core/InputLabel";
 const ENTER_KEY_CODE = 13;
 const DEFAULT_LABEL_PLACEHOLDER = "Click To Edit";
 
-const EditableLabel = props => {
+const EditableLabel = ({ 
+  onChange = () => {}, 
+  onFocus = () => {}, 
+  onFocusOut = () => {},
+  ...props
+  }) => {
   const [isEditing, setEditing] = useState(false);
   const [value, setValue] = useState(props.value);
-  const [inputRef, setInputRef] = useState(null);
-
+  const inputRef = useRef(null);
+  
   const isTextValueValid = () =>
     typeof value !== "undefined" && value.trim().length > 0;
 
   const handleFocus = () => {
-    if (isEditing) {
-      if (typeof props.onFocusOut === "function") {
-        props.onFocusOut(value);
-      }
-    } else {
-      if (typeof props.onFocus === "function") {
-        props.onFocus(value);
-      }
-    }
-
-    if (isTextValueValid()) {
-      setEditing(prev => !prev);
-    } else {
-      if (isEditing) {
-        setEditing(props.emptyEdit || false);
-      } else {
-        setEditing(true);
-      }
-    }
+    const fn = isEditing ? onFocusOut : onFocus;
+    fn(value);
+    handleEditState();
   };
 
   const handleChange = e => {
-    setValue(inputRef.value);
-    props.onChange(e);
+    setValue(inputRef.current.value);
+    onChange(e);
   };
 
   const handleKeyDown = e => {
@@ -47,18 +36,20 @@ const EditableLabel = props => {
     }
   };
 
+  const handleEditState = () => {
+    if(!isTextValueValid()) return;
+    setEditing(prev => !prev);
+  };
+
   const handleEnterKey = () => {
     handleFocus();
   };
-
+    
   if (isEditing) {
     return (
-      <div>
         <Input
           inputProps={{
-            ref: thisRef => {
-              setInputRef(thisRef);
-            },
+            ref:inputRef,
             value
           }}
           onChange={handleChange}
@@ -66,7 +57,6 @@ const EditableLabel = props => {
           onKeyDown={handleKeyDown}
           autoFocus
         />
-      </div>
     );
   }
 
@@ -74,11 +64,7 @@ const EditableLabel = props => {
     ? value
     : props.labelPlaceHolder || DEFAULT_LABEL_PLACEHOLDER;
 
-  return (
-    <div>
-      <InputLabel onClick={handleFocus}>{labelText}</InputLabel>
-    </div>
-  );
+  return <InputLabel onClick={handleFocus}>{labelText}</InputLabel>;
 };
 
 EditableLabel.propTypes = {
