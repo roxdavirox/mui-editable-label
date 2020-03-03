@@ -69,24 +69,7 @@ const EditableLabel = ({
 
 EditableLabel.propTypes = {
   value: PropTypes.string.isRequired,
-  isEditing: PropTypes.bool,
   emptyEdit: PropTypes.bool,
-
-  labelClassName: PropTypes.string,
-  labelFontSize: PropTypes.string,
-  labelFontWeight: PropTypes.string,
-  labelPlaceHolder: PropTypes.string,
-
-  inputMaxLength: PropTypes.number,
-  inputPlaceHolder: PropTypes.string,
-  inputTabIndex: PropTypes.number,
-  inputWidth: PropTypes.string,
-  inputHeight: PropTypes.string,
-  inputFontSize: PropTypes.string,
-  inputFontWeight: PropTypes.string,
-  inputClassName: PropTypes.string,
-  inputBorderWidth: PropTypes.string,
-
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onFocusOut: PropTypes.func
