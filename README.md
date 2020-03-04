@@ -13,12 +13,15 @@ function Demo() {
   const [text, setText] = useState("Click here to edit.");
 
   return (
-    <div className="app">
+    <div>
+      <h1>mui-editable-label Demo</h1>
       <MuiEditableLabel
-        value={text}
-        onChange={e => setText(e.target.value)}
-        onFocus={t => console.log("focus", t)}
-        onFocusOut={t => console.log("focus out", t)}
+        initialValue={text}
+        onFocus={value => console.log("on focus: ", value)}
+        onBlur={value => {
+          console.log('on blur: ', value);
+          setText(value);
+        }}
       />
     </div>
   );
@@ -32,9 +35,8 @@ see a example [here](https://codesandbox.io/s/mui-editable-label-example-32pxf)
 
 | Events        | Description           | return  |
 | ------------- |:-------------:| -----:|
-| onChange     | a normal event of a input | event object |
 | onFocus      | trigged when user clicks       |   a string input value |
-| onFocusOut | trigged when user get out focus from component or press enter key      |    a string input value |
+| onBlur | trigged when user get out focus from component or press enter key      |    a string input value |
 
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
