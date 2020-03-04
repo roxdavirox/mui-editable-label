@@ -19,11 +19,8 @@ const EditableLabel = ({
     typeof value !== "undefined" && value.trim().length > 0;
 
   const handleFocus = () => {
-    if (isEditing) {
-      onBlur(value);
-    } else {
-      onFocus(value);
-    }
+    const fn = isEditing ? onBlur : onFocus;
+    fn(value);
     handleEditState();
   };
 
