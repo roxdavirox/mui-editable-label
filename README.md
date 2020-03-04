@@ -38,6 +38,12 @@ see a example [here](https://codesandbox.io/s/mui-editable-label-example-32pxf)
 | onFocus      | trigged when user clicks       |   a string input value |
 | onBlur | trigged when user get out focus from component or press enter key      |    a string input value |
 
+| Props        | Description           |
+| ------------- |:-------------:|
+| initialValue      | initial string value       |
+
+
+
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
