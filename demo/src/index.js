@@ -10,10 +10,12 @@ function Demo() {
     <div>
       <h1>mui-editable-label Demo</h1>
       <MuiEditableLabel
-        value={text}
-        onChange={e => setText(e.target.value)}
-        onFocus={t => console.log("focus", t)}
-        onFocusOut={t => console.log("focus out", t)}
+        initialValue={text}
+        onFocus={value => console.log("on focus: ", value)}
+        onBlur={value => {
+          console.log('on blur: ', value);
+          setText(value);
+        }}
       />
     </div>
   );

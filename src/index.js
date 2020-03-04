@@ -7,28 +7,27 @@ const ENTER_KEY_CODE = 13;
 const DEFAULT_LABEL_PLACEHOLDER = "Click To Edit";
 
 const EditableLabel = ({ 
-  onChange = () => {}, 
   onFocus = () => {}, 
-  onFocusOut = () => {},
+  onBlur = () => {},
   ...props
   }) => {
   const [isEditing, setEditing] = useState(false);
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(props.initialValue);
   const inputRef = useRef(null);
   
   const isTextValueValid = () =>
     typeof value !== "undefined" && value.trim().length > 0;
 
   const handleFocus = () => {
-    const fn = isEditing ? onFocusOut : onFocus;
-    fn(value);
+    if (isEditing) {
+      onBlur(value);
+    } else {
+      onFocus(value);
+    }
     handleEditState();
   };
 
-  const handleChange = e => {
-    setValue(inputRef.current.value);
-    onChange(e);
-  };
+  const handleChange = e => setValue(inputRef.current.value);
 
   const handleKeyDown = e => {
     if (e.keyCode === ENTER_KEY_CODE) {
@@ -49,7 +48,7 @@ const EditableLabel = ({
     return (
         <Input
           inputProps={{
-            ref:inputRef,
+            ref: inputRef,
             value
           }}
           onChange={handleChange}
@@ -68,11 +67,10 @@ const EditableLabel = ({
 };
 
 EditableLabel.propTypes = {
-  value: PropTypes.string.isRequired,
+  initialValue: PropTypes.string.isRequired,
   emptyEdit: PropTypes.bool,
-  onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  onFocusOut: PropTypes.func
+  onBlur: PropTypes.func
 };
 
 export default EditableLabel;
