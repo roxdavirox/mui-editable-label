@@ -6,6 +6,10 @@
 
 mui-editable-label is a easy and small component Label that you can edit just by clicking.
 
+# how to install
+
+> npm i mui-editable-label
+
 # how to use:
 
 ```
